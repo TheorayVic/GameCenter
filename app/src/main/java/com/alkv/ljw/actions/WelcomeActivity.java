@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.Toast;
@@ -25,6 +26,7 @@ public class WelcomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_welcome);
         welcome();
     }
@@ -41,6 +43,8 @@ public class WelcomeActivity extends AppCompatActivity {
                 isNetOpen = NetUtils.isNetOpen(WelcomeActivity.this);
                 if(isNetOpen){
                     Intent intent = new Intent(WelcomeActivity.this, DownloadService.class);
+                    intent.putExtra("typeid","199");
+                    intent.putExtra("pageid","1");
                     startService(intent);
                 }
             }
